@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>EXTRAÇÃO DE DADOS NA WEB COM PYTHON</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Custom -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Favicon -->
+		<link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+		<link rel="manifest" href="images/favicon/site.webmanifest">
+		<link rel="mask-icon" href="images/favicon/safari-pinned-tab.svg" color="#2980B9">
+		<meta name="msapplication-TileColor" content="#2980B9">
+		<meta name="theme-color" content="#2980B9">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Extração de dados na Web com Python</h1>
+					<p>Prof. Marco Antonio A. de Andrade</p>
+				</section>
+				<section>
+					<h2>Por que utilizar Python?</h2>
+					<ul>
+						<li>É open-source</li>
+						<li>É multiplataforma (MacOS, Linux e Windows)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Instalando o Python</h2>
+					<a href="https://www.python.org/">https://www.python.org/</a>
+				</section>
+				<section>
+					<h2>Variáveis</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	nome = "Maria"
+	print(nome)
+					</code></pre>
+				</section>
+				<section>
+					<h2>Variáveis</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	idade = 18
+	salario = 1200.25
+
+	print(idade)
+	print(salario)
+					</code></pre>
+				</section>
+				<section>
+					<h2>Listas</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	frutas = []
+					</code></pre>
+				</section>
+				<section>
+					<h2>Adicionando itens em uma lista</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	frutas.append("Maça")
+	frutas.append("Banana")
+	frutas.append("Melancia")
+	frutas.append("Laranja")
+
+	print(frutas)
+					</code></pre>
+				</section>
+				<section>
+					<h2>Percorrendo uma lista</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	for item in frutas:
+		print(item)
+					</code></pre>
+				</section>
+				<section>
+					<h2>HTML</h2>
+				</section>
+				<section>
+					<h2>Principais tags</h2>
+					<pre><code class="hlsjs html" data-trim contenteditable>
+	<h1>Título</h1>
+	<p>Paragráfo</p>
+					</code></pre>
+				</section>
+				<section>
+					<h2>Analisando um site com o Chrome Dev Tools</h2>
+					<p>Abra uma página da Web, clique com o botão direito do mouse e selecione <b>inspect</b></p>
+				</section>
+				<section>
+					<h2>Instalando as dependências (Windows)</h2>
+					<pre><code class="hlsjs bash" data-trim contenteditable>
+	python -m pip install requests
+	python -m pip install beautifulsoup4
+					</code></pre>
+				</section>
+				<section>
+					<h2>Instalando as dependências (Linux)</h2>
+					<pre><code class="hlsjs bash" data-trim contenteditable>
+	sudo apt install python3-pip
+	pip3 install requests
+	pip3 install beautifulsoup4
+					</code></pre>
+				</section>				
+				<section>
+					<h2>Capturando uma página</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	import requests
+	r = requests.get("http://wwww.uol.com.br");
+					</code></pre>
+				</section>
+				<section>
+					<h2>Realizar o parsing com BeautifulSoup</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	from bs4 import BeautifulSoup
+	soup = BeautifulSoup(r.text, 'html.parser')
+					</code></pre>
+				</section>
+				<section>
+					<h2>Exemplos de filtragens com BeautifulSoup</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	soup.title
+	soup.title.text
+	soup.find_all('a')
+					</code></pre>
+				</section>
+				<section>
+					<h2>Armazenando dados em Listas</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	links = []
+	texto = []
+	for item in soup.find_all('a'):
+		texto.append(item.text.strip())
+		links.append(item.get('href'))						
+					</code></pre>
+				</section>
+				<section>
+					<h2>Gravando os dados em formato .CSV</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	with open("/home/marco/teste.csv", "w") as arquivo:
+		for x in range(0, len(links)):
+			arquivo.write('"' + str(links[x]) + '","' + str(texto[x]) + '"\n')
+					</code></pre>
+				</section>
+				<section>
+					<h2>Analisando dados com o Google Planilhas</h2>
+				</section>
+				<section>
+					<h2>Sugestões para início dos estudos</h2>
+				</section>
+				<section>
+					<h2>Referências</h2>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			function getParameterByName(name, url) {
+				if (!url) url = window.location.href;
+				name = name.replace(/[\[\]]/g, '\\$&');
+				var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+				results = regex.exec(url);
+				if (!results) return null;
+				if (!results[2]) return '';
+				return decodeURIComponent(results[2].replace(/\+/g, ' '));
+			}
+			var role = getParameterByName('role');
+			role = role === 'master' ? role : 'client';
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: false, // centraliza os slides
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				slideNumber: false,
+				width: "100%",
+				height: "100%",
+				margin: 0.1,
+				minScale: 1,
+				maxScale: 1,
+				/*
+				multiplex: {
+					secret: null,
+					id: null,
+					url: 'https://reveal-js-multiplex-ccjbegmaii.now.sh'
+				},
+				*/
+				dependencies: [
+					{ src: 'lib/js/socket.io.min.js', async: true },
+          			{ src: 'plugin/multiplex/' + role + '.js', async: true },
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
