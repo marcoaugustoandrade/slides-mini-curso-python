@@ -40,12 +40,25 @@
 				<section>
 					<h1>Extração de dados na Web com Python</h1>
 					<p>Prof. Marco Antonio A. de Andrade</p>
+					<a href="mailto:marco.andrade@ifro.edu.br">marco.andrade@ifro.edu.br</a>
 				</section>
 				<section>
 					<h2>Por que utilizar Python?</h2>
 					<ul>
-						<li>É open-source</li>
-						<li>É multiplataforma (MacOS, Linux e Windows)</li>
+						<li>É fácil de aprender</li>
+						<li class="fragment fade-up">É open-source</li>
+						<li class="fragment fade-up">É multiplataforma (MacOS, Linux e Windows)</li>
+						<li class="fragment fade-up">Milhares de bibliotecas</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Quem utiliza?</h2>
+					<ul>
+						<li>Google</li>
+						<li>NASA</li>
+						<li>Netflix</li>
+						<li>Globo</li>
+						<li>Spotify</li>
 					</ul>
 				</section>
 				<section>
@@ -53,11 +66,25 @@
 					<a href="https://www.python.org/">https://www.python.org/</a>
 				</section>
 				<section>
+					<h2>Primeiro código em Python</h2>
+					<pre><code class="hlsjs python" data-trim contenteditable>
+	print("Olá mundo!")
+					</code></pre>
+				</section>
+				<section>
 					<h2>Variáveis</h2>
 					<pre><code class="hlsjs python" data-trim contenteditable>
 	nome = "Maria"
 	print(nome)
 					</code></pre>
+				</section>
+				<section>
+					<h2>Tipos de dados das variáveis</h2>
+					<ul>
+						<li>Números</li>
+						<li>Strings</li>
+						<li>Listas</li>
+					</ul>
 				</section>
 				<section>
 					<h2>Variáveis</h2>
@@ -95,12 +122,20 @@
 				</section>
 				<section>
 					<h2>HTML</h2>
+					<ul>
+						<li>Hypertext Markup Language</li>
+						<li class="fragment fade-up">É a linguagem para marcar os dados na Web</li>
+						<li class="fragment fade-up">Utiliza tags para definição de dados</li>
+						<li class="fragment fade-up">Utiliza um modelo hierárquico</li>
+					</ul>
 				</section>
 				<section>
 					<h2>Principais tags</h2>
 					<pre><code class="hlsjs html" data-trim contenteditable>
-	<h1>Título</h1>
-	<p>Paragráfo</p>
+	&#60;h1&#62;Título&#60;/h1&#62;
+	&#60;h2&#62;Sub-título&#60;/h2&#62;
+	&#60;p&#62;Paragráfo&#60;/p&#62;
+	&#60;a href='endereco.html'&#62;Link&#60;/a&#62;
 					</code></pre>
 				</section>
 				<section>
@@ -157,7 +192,7 @@
 				<section>
 					<h2>Gravando os dados em formato .CSV</h2>
 					<pre><code class="hlsjs python" data-trim contenteditable>
-	with open("/home/marco/teste.csv", "w") as arquivo:
+	with open("/home/marco/links_uol.csv", "w") as arquivo:
 		for x in range(0, len(links)):
 			arquivo.write('"' + str(links[x]) + '","' + str(texto[x]) + '"\n')
 					</code></pre>
@@ -167,9 +202,9 @@
 				</section>
 				<section>
 					<h2>Sugestões para início dos estudos</h2>
-				</section>
-				<section>
-					<h2>Referências</h2>
+					<li><a href="https://www.amazon.com.br/Introdu%C3%A7%C3%A3o-%C3%A0-Programa%C3%A7%C3%A3o-com-Python/dp/8575224085?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=python&qid=1526866868&sr=8-1&ref=sr_1_1">Livro Introdução à Programação com Python</a></li>
+					<li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML">Guia de referência HTML</a></li>
+					<li><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Documentação do BeautifulSoup</a></li>
 				</section>
 			</div>
 		</div>
